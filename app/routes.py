@@ -2,12 +2,14 @@ import os
 import sqlite3
 from flask import Blueprint, render_template
 from datetime import datetime
+from .forms.py import AppointmentForm
 
 bp = Blueprint('main', __name__, url_prefix='/')
 DB_FILE = os.environ.get("DB_FILE")
 
-@bp.route("/")
+@bp.route("/", methods=["GET", "POST"])
 def main():
+    form = AppointmentForm()
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
     cursor.execute("""
@@ -26,4 +28,4 @@ def main():
         end_datetime = datetime.strptime(end_datetime, '%Y-%m-%d %H:%M:%S')
         appointments.append((id, name, start_datetime, end_datetime))
 
-    return render_template("main.html", appointments=appointments)
+    return render_template("main.html", appointments=appointments, form=form)

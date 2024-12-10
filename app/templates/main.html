@@ -8,6 +8,38 @@
 </head>
 <body>
     <h1>Calendar working</h1>
+    <form method="post" action="/">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}
+        </p>
+        <p>
+            {{ form.start_date.label }}<br>
+            {{ form.start_date() }}
+        </p>
+        <p>
+            {{ form.start_time.label }}<br>
+            {{ form.start_time() }}
+        </p>
+        <p>
+            {{ form.end_date.label }}<br>
+            {{ form.end_date() }}
+        </p>
+        <p>
+            {{ form.end_time.label }}<br>
+            {{ form.end_time() }}
+        </p>
+        <p>
+            {{ form.description.label }}<br>
+            {{ form.description(rows=4, cols=40) }}
+        </p>
+        <p>
+            {{ form.private.label }}<br>
+            {{ form.private() }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
     <table>
         <thead>
             <tr>
